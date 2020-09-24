@@ -1,7 +1,6 @@
 const btnSend = document.querySelector('#send')
-const contentTable = document.querySelector('.tableDiv')
 const tableElement = document.querySelector('.tableCon tbody')
-let pages = []
+const tableDiv = document.querySelector('.tableDiv')
 
 const namePage = document.querySelector('.namePage')
 const urlPage = document.querySelector('.urlPage')
@@ -34,11 +33,11 @@ function formValid(e){
 	const exReg = /^(ftp|http|https):\/\/[^ "]+$/
 	if (exReg.test(urlPage.value) && namePage.value.length > 0) {
 		btnSend.disabled = false
-		pages = [...pages, namePage.value, urlPage.value]
-		console.log(pages)
+	} else if (exReg.test(urlPage.value) === false) {
+		urlPage.classList.add('border', 'border-danger')
+		btnSend.disabled = true
 	} else {
 		btnSend.disabled = true
-		console.log('estan vacios')
 	}
 }
 
